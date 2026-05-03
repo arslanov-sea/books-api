@@ -1,4 +1,3 @@
-from tkinter.constants import PAGES
 from typing import Optional
 
 from fastapi import FastAPI
