@@ -33,3 +33,29 @@ async def update_public_book(book_id: int):
 @app.delete("/books/public/{book_id}"):
 async def delete_public_book(book_id: int):
     return {"message": f"delete public book with id {book_id} endpoint"}
+
+
+@app.get(/authors):
+async def get_authors():
+    return {"message": "all authors endpoint"}
+
+
+@app.get("/authors/{author_id}"):
+async def get_author(author_id: int):
+    return {"message": f"author with id {author_id} endpoint"}
+
+
+@app.post("/authors"):
+async def create_author():
+    return {"message": "create author endpoint"}
+
+
+@app.patch("/authors/{author_id}"):
+async def update_author(author_id: int):
+    return {"message": f"update author with id {author_id} endpoint"}
+
+
+@app.delete("/authors/{author_id}"):
+async def delete_author(author_id: int):
+    return {"message": f"delete author with id {author_id} endpoint"}
+
