@@ -59,3 +59,27 @@ async def update_author(author_id: int):
 async def delete_author(author_id: int):
     return {"message": f"delete author with id {author_id} endpoint"}
 
+
+@app.get("/genres")
+async def get_genres():
+    return {"message": "all genres endpoint"}
+
+
+@app.get("/genres/{genre_id}"):
+async def get_genre(genre_id: int):
+    return {"message": f"genre with id {genre_id} endpoint"}
+
+
+@ap.post("/genres")
+async def create_genre():
+    return {"message": "create genre endpoint"}
+
+
+@app.patch("/genres/{genre_id}"):
+async def update_genre(genre_id: int):
+    return {"message": f"update genre with id {genre_id} endpoint"}
+
+
+@app.delete("/genres/{genre_id}"):
+async def delete_genre(genre_id: int):
+    return {"message": f"delete genre with id {genre_id} endpoint"}
