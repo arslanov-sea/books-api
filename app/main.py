@@ -11,8 +11,8 @@ async def root():
 
 
 @app.get("/books/public")
-async def get_public_books():
-    return {"message": "all public books endpoint"}
+async def get_public_books(offset: int = 0, limit: int = 10):
+    return {"message": f"all public books endpoint. offset: {offset}, limit: {limit}"}
 
 
 @app.get("/books/public/{book_id}")
@@ -36,8 +36,8 @@ async def delete_public_book(book_id: int):
 
 
 @app.get("/authors")
-async def get_authors():
-    return {"message": "all authors endpoint"}
+async def get_authors(offset: int = 0, limit: int = 10):
+    return {"message": f"all authors endpoint. offset: {offset}, limit: {limit}"}
 
 
 @app.get("/authors/{author_id}")
@@ -61,8 +61,8 @@ async def delete_author(author_id: int):
 
 
 @app.get("/genres")
-async def get_genres():
-    return {"message": "all genres endpoint"}
+async def get_genres(offset: int = 0, limit: int = 10):
+    return {"message": f"all genres endpoint. offset: {offset}, limit: {limit}"}
 
 
 @app.get("/genres/{genre_id}")
