@@ -1,9 +1,30 @@
-from typing import Optional
-
 from fastapi import FastAPI
-from sqlmodel import Field, SQLModel
+from pydantic import BaseModel
+
+
+class Author(BaseModel):
+    id: int
+    name: str
+    bio: str
+
+
+class Genre(BaseModel):
+    id: int
+    name: str
+    description: str
+
+
+class Book(BaseModel):
+    id: int
+    title: str
+    description: str
+    year: int
+    author_id: int
+    genre_id: int
+
 
 app = FastAPI()
+
 
 @app.get("/")
 async def root():
