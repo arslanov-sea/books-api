@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Query, Path
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Annotated
 
 
@@ -24,6 +24,11 @@ class Book(BaseModel):
     genre_id: int
 
 
+class FilterParams(BaseModel):
+    offset: int = Field(0, ge=0, le=5000)
+    limit: int = Field(10, ge=1, le=100)
+
+
 app = FastAPI()
 
 
@@ -32,8 +37,8 @@ async def root():
     return {"message": "root endpoint"}
 
 @app.get("/books/public")
-async def get_public_books(offset: Annotated[int, Query(ge=0, le=5000)] = 0, limit: Annotated[int, Query(ge=1, le=100)] = 10):
-    return {"message": f"all public books endpoint. offset: {offset}, limit: {limit}"}
+async def get_public_books(filter_params: Annotated[FilterParams, Query()]):
+    return {"message": f"all public books endpoint. offset: {filter_params.offset}, limit: {filter_params.limit}"}
 
 
 @app.get("/books/public/{book_id}")
@@ -56,8 +61,8 @@ async def delete_public_book(book_id: Annotated[int, Path(ge=1)]):
     return {"message": f"delete public book with id {book_id} endpoint"}
 
 @app.get("/authors")
-async def get_authors(offset: Annotated[int, Query(ge=0, le=5000)] = 0, limit: Annotated[int, Query(ge=1, le=100)] = 10):
-    return {"message": f"all authors endpoint. offset: {offset}, limit: {limit}"}
+async def get_authors(filter_params: Annotated[FilterParams, Query()]):
+    return {"message": f"all authors endpoint. offset: {filter_params.offset}, limit: {filter_params.limit}"}
 
 
 @app.get("/authors/{author_id}")
@@ -80,8 +85,8 @@ async def delete_author(author_id: Annotated[int, Path(ge=1)]):
     return {"message": f"delete author with id {author_id} endpoint"}
 
 @app.get("/genres")
-async def get_genres(offset: Annotated[int, Query(ge=0, le=5000)] = 0, limit: Annotated[int, Query(ge=1, le=100)] = 10):
-    return {"message": f"all genres endpoint. offset: {offset}, limit: {limit}"}
+async def get_genres(filter_params: Annotated[FilterParams, Query()]):
+    return {"message": f"all genres endpoint. offset: {filter_params.offset}, limit: {filter_params.limit}"}
 
 
 @app.get("/genres/{genre_id}")
